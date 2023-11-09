@@ -54,11 +54,10 @@
           <li><a href="register.php">S'inscrire</a></li>
           <li><a class="get-a-quote" href="connect.php">Se Connecter</a></li>
         </ul>
-      </nav><!-- .navbar --
+      </nav>
 
     </div>
-  </header><!-- End Header -->
-  <!-- End Header -->
+  </header>
 
 
   <main id="main">
@@ -69,8 +68,8 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Contact</h2>
-              <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+              <h2>Contactez-Nous</h2>
+              <p>feel free</p>
             </div>
           </div>
         </div>
@@ -78,7 +77,7 @@
       <nav>
         <div class="container">
           <ol>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php">Accueil</a></li>
             <li>Contact</li>
           </ol>
         </div>
@@ -90,7 +89,7 @@
       <div class="container" data-aos="fade-up">
 
         <div>
-          <iframe style="border:0; width: 100%; height: 340px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+          <iframe style="border:0; width: 100%; height: 340px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1552.7157669168787!2d10.269068141105475!3d36.76030980159917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd49fa1514fea9%3A0xc2f1b003499532a5!2sL&#39;%20ISET%20de%20Rad%C3%A8s%2C%20Av.%20de%20France%2C%20Rad%C3%A8s!5e0!3m2!1sfr!2stn!4v1699526261347!5m2!1sfr!2stn" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div><!-- End Google Maps -->
 
         <div class="row gy-4 mt-4">
@@ -100,8 +99,8 @@
             <div class="info-item d-flex">
               <i class="bi bi-geo-alt flex-shrink-0"></i>
               <div>
-                <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <h4>Adresse :</h4>
+                <p>ISET Rades - Rades - Tunisia</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -109,15 +108,15 @@
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>info@tuniliv.tn</p>
               </div>
             </div><!-- End Info Item -->
 
             <div class="info-item d-flex">
               <i class="bi bi-phone flex-shrink-0"></i>
               <div>
-                <h4>Call:</h4>
-                <p>+1 5589 55488 55</p>
+                <h4>GSM :</h4>
+                <p>+216 23 456 789</p>
               </div>
             </div><!-- End Info Item -->
 
