@@ -1,3 +1,39 @@
+<?php
+
+include("./includes/db.php");
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+ {
+    $name = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $subject = trim($_POST["subject"]);
+    $message = trim($_POST["message"]);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+      {
+        echo "Invalid email format";
+        exit();
+      }
+
+    $sql = "INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)";
+
+    if ($stmt = $conn->prepare($sql)) 
+    {
+        $stmt->bind_param("ssss", $name, $email, $subject, $message);
+        $stmt->execute();
+        header('Location: contact.php');
+    } 
+    else 
+    {
+        echo "Something went wrong. Please try again later.";
+    }
+
+    $stmt->close();
+    $conn->close();
+  }
+    ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -123,7 +159,7 @@
           </div>
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="./contact.php" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -154,6 +190,7 @@
 
   </main><!-- End #main -->
 
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
@@ -161,9 +198,9 @@
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-info">
           <a href="index.php" class="logo d-flex align-items-center">
-            <span>Logis</span>
+            <span>TuniLiv</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>We are the best</p>
           <div class="social-links d-flex mt-4">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -175,33 +212,23 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="index.php">Accueil</a></li>
+            <li><a href="connect.php">Se Conneter</a></li>
+            <li><a href="register.php">S'inscrire</a></li>
+
           </ul>
         </div>
 
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
+        
 
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
           <p>
-            A108 Adam Street <br>
-            New York, NY 535022<br>
-            United States <br><br>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> info@example.com<br>
+            ISET RADES <br>
+            2098 RADES<br>
+            Ben Arous - Tunisia <br><br>
+            <strong>Téléphone:</strong> +216 21 345 678 <br>
+            <strong>Email:</strong> info@tuniliv.tn<br>
           </p>
 
         </div>
@@ -211,14 +238,11 @@
 
     <div class="container mt-4">
       <div class="copyright">
-        &copy; Copyright <strong><span>Logis</span></strong>. All Rights Reserved
+        2023 &copy; Copyright <strong><a href="index.php"><span>TUNILIV</span></a></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by       Designed by Yassine MANAI & Sofiene ZAYATI</>
+
       </div>
     </div>
 
@@ -243,3 +267,4 @@
 </body>
 
 </html>
+

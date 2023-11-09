@@ -60,24 +60,35 @@
   </header><!-- End Header -->
   <!-- End Header -->
 
- <br>  
+  
     <!-- ======= Call To Action Section ======= -->
     <section id="call-to-action" class="call-to-action">
       <div class="container" data-aos="zoom-out">
 
-        <div class="row justify-content-center">
+        
+
+      </div>    
+    </section><!-- End Call To Action Section -->
+
+    <br><br><br>
+    <div class="row justify-content-center">
           <div class="col-lg-8 text-center">
             <h3> Espace Client </h3>
-            <p>  Connecter dans votre espace pour bénéficier de nos offres</p>
-            <a class="cta-btn" href="connect.php">Se Connecter</a>
+            <p>  Connectez-vous à votre espace pour bénéficier de nos offres</p>
+
+            <form method="POST" action="login.php">
+
+              <input type="email" name="email" placeholder="Email" required>
+              <input type="password" name="password" placeholder="Mot de passe" required>
+              
+              <button type="submit">Se connecter</button>
+            </form>
           </div>
         </div>
 
-      </div>
-    </section><!-- End Call To Action Section -->
-     <br>  <br>  <br><br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
+        <br>     <br><br><br>
+        <br><br><br>
 
-  <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
     <div class="container">
@@ -110,7 +121,7 @@
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
           <p>
-            ISET RADES <br>
+            ISET RADES <br> 
             2098 RADES<br>
             Ben Arous - Tunisia <br><br>
             <strong>Téléphone:</strong> +216 21 345 678 <br>
