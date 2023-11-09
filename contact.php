@@ -47,13 +47,14 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.php"> Accueil </a></li>
-          <li><a href="services.php" >Services</a></li>
-          <li><a href="pricing.php">Nos Prix</a></li>
+          <li><a href="index.php" > Accueil </a></li>
+        
           <li><a href="contact.php" class="active">Contact</a></li>
+
+          <li><a href="register.php">S'inscrire</a></li>
           <li><a class="get-a-quote" href="connect.php">Se Connecter</a></li>
         </ul>
-      </nav><!-- .navbar -->
+      </nav><!-- .navbar --
 
     </div>
   </header><!-- End Header -->
