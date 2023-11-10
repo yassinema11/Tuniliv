@@ -1,3 +1,63 @@
+<?php 
+session_start();
+
+include("./includes/db.php");
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    // Retrieve data from the form
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // Prepare and execute the SQL query to retrieve data from the database
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) 
+    {
+        // Correct data
+        echo "Login successful.";
+        
+        // Start a session
+        session_start();
+
+        // Fetch the user data
+        $user = $result->fetch_assoc();
+
+        // Store the user information in the session variables
+        $_SESSION["id"] = $user['id'];
+        $_SESSION["email"] = $user['email'];
+        $_SESSION["password"] = $user['password'];
+
+        // Redirect to the dashboard
+        header("Location: dash.php");
+        exit();
+    } 
+    else 
+    {
+        // Incorrect data
+        echo "<script>alert('Invalid email or password.!')</script>";
+    }
+
+    if ($email === "admin@tuniliv.com" && $password === "123456789") 
+    {
+      // Admin login successful, redirect to the admin dashboard
+      header("Location: admin_login.php");
+      exit();
+  }
+
+    // Close the prepared statement
+    $stmt->close();
+}
+
+// Close the database connection
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -28,7 +88,48 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  
+  <style>
+
+    /* Main Section Styles */
+.call-to-action {
+    background-color: #007bff;
+    color: #fff;
+    padding: 100px 0;
+}
+
+/* Login Form Styles */
+form {
+    max-width: 400px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+  </style>
 </head>
 
 <body>
@@ -76,7 +177,7 @@
             <h3> Espace Client </h3>
             <p>  Connectez-vous à votre espace pour bénéficier de nos offres</p>
 
-            <form method="POST" action="login.php">
+            <form method="POST" action="connect.php">
 
               <input type="email" name="email" placeholder="Email" required>
               <input type="password" name="password" placeholder="Mot de passe" required>

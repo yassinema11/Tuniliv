@@ -1,3 +1,49 @@
+<?php
+include("./includes/db.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+ {
+    $nom = $_POST["nom"];
+    $email = $_POST["email"];
+    $cin = $_POST["cin"];
+    $password = $_POST["password"];
+    $adresse = $_POST["adresse"];
+
+    // Check if the user already exists
+    $checkStmt = $conn->prepare("SELECT id FROM users WHERE cin = ?");
+    $checkStmt->bind_param("s", $cin);
+    $checkStmt->execute();
+    $checkResult = $checkStmt->get_result();
+
+    if ($checkResult->num_rows > 0) 
+    {
+          echo "<script>alert(' This user Exist !')</script>";
+    } 
+    else
+    {
+        // User does not exist, proceed with insertion
+        $insertStmt = $conn->prepare("INSERT INTO users (nom, email, cin, password, adresse) VALUES (?, ?, ?, ?, ?)");
+        $insertStmt->bind_param("sssss", $nom, $email, $cin, $password, $adresse);
+        $insertStmt->execute();
+
+        if ($insertStmt->affected_rows > 0)
+         {
+            echo "Data added to the database successfully.";
+            header('Location: connect.php');
+        }
+        else 
+        {
+            echo "Error adding data to the database.";
+        }
+
+        $insertStmt->close();
+    }
+
+    $checkStmt->close();
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -28,7 +74,48 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  
+  <style>
+    /* Main Section Styles */
+    .call-to-action {
+      background-color: #007bff;
+      color: #fff;
+      padding: 100px 0;
+    }
+
+    /* Login Form Styles */
+    form {
+      max-width: 400px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    form button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    form button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -48,7 +135,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php" class="active"> Accueil </a></li>
-        
+
           <li><a href="contact.php">Contact</a></li>
 
           <li><a href="register.php">S'inscrire</a></li>
@@ -58,38 +145,35 @@
 
     </div>
 
-    
   </header><!-- End Header -->
   <!-- End Header -->
 
-  
-    <!-- ======= Call To Action Section ======= -->
-    <section id="call-to-action" class="call-to-action">
-      <div class="container" data-aos="zoom-out">
+  <!-- ======= Call To Action Section ======= -->
+  <section id="call-to-action" class="call-to-action">
+    <div class="container" data-aos="zoom-out">
 
-        
+    </div>
+  </section><!-- End Call To Action Section -->
 
-      </div>
-    </section><!-- End Call To Action Section -->
+  <br><br><br>
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center">
+      <h3> S'inscrire </h3>
+      <p> Inscrivez-vous à votre espace </p>
 
-    <br><br><br>
-    <div class="row justify-content-center">
-          <div class="col-lg-8 text-center">
-            <h3> Espace Client </h3>
-            <p>  Inscrivez-vous à votre espace pour bénéficier de nos offres</p>
-            
-            <form method="POST" action="reg.php">
-              <input type="email" name="email" placeholder="Email" required><br><br>
-              <input type="number" name="cin" placeholder="CIN" required><br><br>
-              <input type="password" name="password" placeholder="Mot de passe" required><br><br>
-              <input type="text" name="adresse" placeholder="Adresse" required><br><br>
-              <button type="submit">S'inscrire</button>
-            </form>
-          </div>
-        </div>
+      <form method="POST" action="register.php">
+        <input type="text" name="nom" placeholder="Nom" required><br><br>
+        <input type="number" name="cin" placeholder="CIN" required><br><br>
+        <input type="email" name="email" placeholder="Email" required><br><br>
+        <input type="password" name="password" placeholder="Mot de passe" required><br><br>
+        <input type="text" name="adresse" placeholder="Adresse" required><br><br>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+  </div>
 
-        <br>     <br><br><br>
-        <br><br><br>
+  <br><br><br><br>
+  <br><br><br>
 
   <footer id="footer" class="footer">
 
@@ -117,13 +201,10 @@
 
           </ul>
         </div>
-
-        
-
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
           <p>
-            ISET RADES <br> 
+            ISET RADES <br>
             2098 RADES<br>
             Ben Arous - Tunisia <br><br>
             <strong>Téléphone:</strong> +216 21 345 678 <br>
@@ -166,4 +247,3 @@
 </body>
 
 </html>
-
