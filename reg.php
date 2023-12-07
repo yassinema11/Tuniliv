@@ -18,20 +18,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     if ($checkResult->num_rows > 0) 
     {
-        // User already exists, display an error message
         echo "Error: User with this email already exists.";
     } 
     else 
     {
-        // User does not exist, proceed with insertion
         $insertStmt = $conn->prepare("INSERT INTO users (nom, email, cin, password, adresse) VALUES (?, ?, ?, ?, ?)");
         $insertStmt->bind_param("sssss", $nom, $email, $cin, $password, $adresse);
         $insertStmt->execute();
 
-        if ($insertStmt->affected_rows > 0) {
+        if ($insertStmt->affected_rows > 0)
+         {
             echo "Data added to the database successfully.";
             header('Location: connect.php');
-        } else {
+        } 
+        else 
+        {
             echo "Error adding data to the database.";
         }
 

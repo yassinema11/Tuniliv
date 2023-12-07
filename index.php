@@ -9,15 +9,14 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
+
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
+
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -25,21 +24,17 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
+
   <link href="assets/css/main.css" rel="stylesheet">
 
   
 </head>
 
 <body>
-
-  <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="index.php" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>TuniLiv</h1>
       </a>
 
@@ -54,13 +49,11 @@
           <li><a href="register.php">S'inscrire</a></li>
           <li><a class="get-a-quote" href="connect.php">Se Connecter</a></li>
         </ul>
-      </nav><!-- .navbar -->
+      </nav>
 
     </div>
-  </header><!-- End Header -->
-  <!-- End Header -->
+  </header>
 
-  <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center">
     <div class="container">
       <div class="row gy-4 d-flex justify-content-between">
@@ -68,10 +61,11 @@
           <h2 data-aos="fade-up">Votre partenaire dans tous vos livraison </h2>
           <p data-aos="fade-up" data-aos-delay="100">  </p>
 
-          <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-            <input type="text" class="form-control" placeholder="Votre Code de livraison">
-            <button type="submit" class="btn btn-primary">Rechercher</button>
+          <form action="search_deliv.php" method="POST" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+              <input type="text" name="delivery_code" class="form-control" placeholder="Votre Code de livraison" required>
+                  <button type="submit" class="btn btn-primary">Rechercher</button>
           </form>
+
 
           <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
 
@@ -80,28 +74,28 @@
                 <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
                 <p>Clients</p>
               </div>
-            </div><!-- End Stats Item -->
+            </div>
 
             <div class="col-lg-3 col-6">
               <div class="stats-item text-center w-100 h-100">
                 <span data-purecounter-start="0" data-purecounter-end="16" data-purecounter-duration="1" class="purecounter"></span>
                 <p>Agences</p>
               </div>
-            </div><!-- End Stats Item -->
+            </div>
 
             <div class="col-lg-3 col-6">
               <div class="stats-item text-center w-100 h-100">
                 <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
                 <p> Colis </p>
               </div>
-            </div><!-- End Stats Item -->
+            </div>
 
             <div class="col-lg-3 col-6">
               <div class="stats-item text-center w-100 h-100">
                 <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
                 <p>Employés</p>
               </div>
-            </div><!-- End Stats Item -->
+            </div>
 
           </div>
         </div>
@@ -112,11 +106,11 @@
 
       </div>
     </div>
-  </section><!-- End Hero Section -->
+  </section>
 
   <main id="main">
 
-    <!-- ======= Featured Services Section ======= -->
+
     <section id="featured-services" class="featured-services">
       <div class="container">
 
@@ -129,7 +123,7 @@
               <p class="description"> Nos depôts de Stockage est a votre disposition pour tous vos opérations</p>
             </div>
           </div>
-          <!-- End Service Item -->
+
 
           <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="icon flex-shrink-0"><i class="fa-solid fa-truck"></i></div>
@@ -137,7 +131,7 @@
               <h4 class="title">Livraison 24 / 24 </h4>
               <p class="description"> Votre Colis livré dans toutes la Tunisie en 24 H <br> Nos agences est ouverte 24/24 - 7/7 </p>
             </div>
-          </div><!-- End Service Item -->
+          </div>
 
           <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="icon flex-shrink-0"><i class="fa-solid fa-truck-ramp-box"></i></div>
@@ -145,15 +139,12 @@
               <h4 class="title"> Emballage </h4>
               <p class="description">Votre produit est emballé dans nos dépôt est livré par nous !</p>
             </div>
-          </div><!-- End Service Item -->
+          </div>
 
         </div>
 
       </div>
-    </section><!-- End Featured Services Section -->
-
-   
-    <!-- ======= Services Section ======= -->
+    </section>
     <section id="service" class="services pt-0">
       <div class="container" data-aos="fade-up">
 
@@ -173,7 +164,7 @@
               <h3>Stockage</h3>
               <p>Tous vos Colis sont stockées a nos dépôt </p>
             </div>
-          </div><!-- End Card Item -->
+          </div>
 
         
 
@@ -195,16 +186,12 @@
               <h3>Packaging</h3>
               <p>Nous Emmballons tous vos produits et les livrer</p>
             </div>
-          </div><!-- End Card Item -->
-
-          
-
+          </div>
         </div>
-
       </div>
-    </section><!-- End Services Section -->
+    </section>
 
-    <!-- ======= Call To Action Section ======= -->
+
     <section id="call-to-action" class="call-to-action">
       <div class="container" data-aos="zoom-out">
 
@@ -217,10 +204,10 @@
         </div>
 
       </div>
-    </section><!-- End Call To Action Section -->
+    </section>
 
     
-    <!-- ======= Pricing Section ======= -->
+
     <section id="pricing" class="pricing pt-0">
       <div class="container" data-aos="fade-up">
 
@@ -239,7 +226,7 @@
               
               <a href="connect.php" class="buy-btn">Commander</a>
             </div>
-          </div><!-- End Pricing Item -->
+          </div>
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="pricing-item featured">
@@ -248,7 +235,7 @@
            
               <a href="connect.php" class="buy-btn">Commander</a>
             </div>
-          </div><!-- End Pricing Item -->
+          </div>
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="pricing-item">
@@ -256,13 +243,11 @@
               <h4><sup>TND</sup>5<span> / Livraison</span></h4>
                           <a href="connect.php" class="buy-btn">Commander</a>
             </div>
-          </div><!-- End Pricing Item -->
+          </div>
 
         </div>
       </div>
-    </section><!-- End Pricing Section -->
-
-    <!-- ======= Testimonials Section ======= -->
+    </section>
     <section id="testimonials" class="testimonials">
       <div class="container">
 
@@ -283,7 +268,7 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -299,7 +284,7 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -315,7 +300,7 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -331,7 +316,7 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -347,19 +332,19 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
           </div>
           <div class="swiper-pagination"></div>
         </div>
 
       </div>
-    </section><!-- End Testimonials Section -->
+    </section>
 
   
-  </main><!-- End #main -->
+  </main>
 
-  <!-- ======= Footer ======= -->
+
   <footer id="footer" class="footer">
 
     <div class="container">
@@ -409,19 +394,19 @@
         2023 &copy; Copyright <strong><a href="index.php"><span>TUNILIV</span></a></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Designed by       Designed by Yassine MANAI & Sofiene ZAYATI</>
+Designed by Yassine MANAI & Sofiene ZAYATI</>
 
       </div>
     </div>
 
-  </footer><!-- End Footer -->
-  <!-- End Footer -->
+  </footer>
+
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
+ 
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -429,7 +414,7 @@
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
+
   <script src="assets/js/main.js"></script>
 
 </body>

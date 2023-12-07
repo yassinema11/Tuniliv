@@ -3,23 +3,21 @@ session_start();
 
 include("./includes/db.php");
 
-// Fetch admin data from the admins table
 $stmt = $conn->prepare("SELECT * FROM admins WHERE admin_id = ?");
 $stmt->bind_param("i", $admin_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
 
-
-// Fetch all contacts
 $contactsResult = $conn->query("SELECT * FROM contact_messages");
 $contact_messages = $contactsResult->fetch_all(MYSQLI_ASSOC);
 
-// Fetch all delivery data
 $allDeliveriesResult = $conn->query("SELECT * FROM dashboard");
 $allDeliveries = $allDeliveriesResult->fetch_all(MYSQLI_ASSOC);
 
-// Handle modifying delivery status
+$allusersResult = $conn->query("SELECT * FROM users");
+$userlist = $allusersResult->fetch_all(MYSQLI_ASSOC);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_status"])) 
 {
     $delivery_id = $_POST["delivery_id"];
@@ -30,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_status"]))
     $stmt->execute();
 }
 
-// Handle modifying delivery information
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_info"])) 
 {
     $delivery_id = $_POST["delivery_id"];
@@ -43,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_info"]))
     $stmt->execute();
 }
 
-// Handle deleting a user
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_user"])) 
 {
     $user_id = $_POST["user_id"];
@@ -53,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_user"]))
     $stmt->execute();
 }
 
-// Log out and destroy the session when the Disconnect button is clicked
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["disconnect"])) 
 {
     session_destroy();
@@ -61,7 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["disconnect"]))
     exit();
 }
 
-// Close the prepared statements
 $stmt->close();
 ?>
 
@@ -74,7 +68,6 @@ $stmt->close();
     <title>Admin Dashboard</title>
 
     <style>
-        /* Add your admin page styles here */
 
         body {
             font-family: 'Arial', sans-serif;
@@ -92,7 +85,6 @@ $stmt->close();
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             text-align: left;
-            /* Align text content to the left */
         }
 
         h2 {
@@ -178,12 +170,12 @@ $stmt->close();
 </head>
 
 <body>
-    <!-- Add your header content here -->
     <nav>
         <button onclick="showAllContacts()">Afficher tous les contacts</button>
         <button onclick="showAllDeliveries()">Afficher toutes les livraisons</button>
         <button onclick="toggleForm('modifyStatusForm')">Modifier le statut de livraison</button>
         <button onclick="toggleForm('modifyInfoForm')">Modifier les informations de livraison</button>
+        <button onclick="toggleForm('userlist')">Liste des Utilisateurs </button>
         <button onclick="toggleForm('deleteUserForm')">Supprimer un utilisateur</button>
         <br><br>
         <form method="POST" action="">
@@ -194,16 +186,19 @@ $stmt->close();
     <div class="container">
         <h2>Bienvenue dans le tableau de bord de l'administrateur !</h2>
 
-        <!-- Form to modify delivery status -->
         <form method="POST" action="" id="modifyStatusForm" class="hidden">
             <label for="delivery_id">ID de Livraison:</label>
-            <input type="text" name="delivery_id" required>
-            <label for="new_status">Nouveau Statut:</label>
-            <input type="text" name="new_status" required>
-            <button type="submit" name="modify_status">Modifier Statut</button>
+                <input type="text" name="delivery_id" required>
+                <label for="new_status">Nouveau Statut:</label>
+            <select name="new_status" required>
+                <option value="ok">OK</option>
+                <option value="En Cours">En Cours</option>
+                <option value="no">Non</option>
+            </select><br><br><br>
+            <button type="submit" name="modify_status">Modifier</button>
         </form>
 
-        <!-- Form to modify delivery information -->
+
         <form method="POST" action="" id="modifyInfoForm" class="hidden">
             <label for="delivery_id">ID de Livraison:</label>
             <input type="text" name="delivery_id" required>
@@ -216,16 +211,13 @@ $stmt->close();
             <button type="submit" name="modify_info">Modifier Informations</button>
         </form>
 
-        <!-- Form to delete a user -->
         <form method="POST" action="" id="deleteUserForm" class="hidden">
             <label for="user_id">ID de l'Utilisateur à Supprimer:</label>
             <input type="text" name="user_id" required>
             <button type="submit" name="delete_user">Supprimer Utilisateur</button>
         </form>
 
-        <!-- Table to display all contacts -->
         <table id="allContacts" class="hidden">
-            <h3>Tous les Contacts:</h3>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -237,7 +229,6 @@ $stmt->close();
             </thead>
             <tbody>
                 <?php
-                // Display all contacts
                 foreach ($contact_messages as $contact) 
                 {
                     echo "<tr>";
@@ -252,9 +243,7 @@ $stmt->close();
             </tbody>
         </table>
 
-        <!-- Table to display all delivery data -->
         <table id="allDeliveries" class="hidden">
-            <h3>Toutes les Livraisons:</h3>
             <thead>
                 <tr>
                     <th>ID de Livraison</th>
@@ -266,7 +255,6 @@ $stmt->close();
             </thead>
             <tbody>
                 <?php
-                // Display all delivery data
                 foreach ($allDeliveries as $delivery) 
                 {
                     echo "<tr>";
@@ -280,10 +268,35 @@ $stmt->close();
                 ?>
             </tbody>
         </table>
+
+        <table id="userlist" class="hidden">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>CIN</th>
+                    <th>Email</th>
+                    <th>Adresse</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($userlist as $uls) 
+                {
+                    echo "<tr>";
+                    echo "<td>{$uls['id']}</td>";
+                    echo "<td>{$uls['nom']}</td>";
+                    echo "<td>{$uls['email']}</td>";
+                    echo "<td>{$uls['cin']}</td>";
+                    echo "<td>{$uls['adresse']}</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
 
     <script>
-        // JavaScript function to toggle the visibility of forms
         function toggleForm(formId)
         
         {
@@ -291,18 +304,22 @@ $stmt->close();
             form.classList.toggle('hidden');
         }
 
-        // JavaScript function to toggle the visibility of all contacts
         function showAllContacts() 
         {
             var allContactsTable = document.getElementById('allContacts');
             allContactsTable.style.display = (allContactsTable.style.display === 'none') ? 'table' : 'none';
         }
 
-        // JavaScript function to toggle the visibility of all delivery data
         function showAllDeliveries() 
         {
             var allDeliveriesTable = document.getElementById('allDeliveries');
             allDeliveriesTable.style.display = (allDeliveriesTable.style.display === 'none') ? 'table' : 'none';
+        }
+
+        function showallusers() 
+        {
+            var allusers = document.getElementById('userlist');
+            allusers.style.display = (allusers.style.display === 'none') ? 'table' : 'none';
         }
     </script>
 </body>

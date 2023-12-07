@@ -90,30 +90,19 @@ $conn->close();
 
   <style>
 
-    /* Main Section Styles */
+/* Main Section Styles */
 .call-to-action {
-    background-color: #007bff;
-    color: #fff;
+    background-color: transparent;
     padding: 100px 0;
-}
-
-/* Login Form Styles */
-form {
-    max-width: 400px;
-    margin: auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 form input {
     width: 100%;
+    background-color: #fff; /* Change this line to set the background color for the form input */
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+    border: 1px solid #000000;
+    border-radius: 5px; /* Add this line to set the border-radius for the form input */
 }
 
 form button {
@@ -129,13 +118,14 @@ form button {
 form button:hover {
     background-color: #0056b3;
 }
+
   </style>
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center fixed-top">
+ <!-- ======= Header ======= -->
+ <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="index.php" class="logo d-flex align-items-center">
@@ -156,24 +146,14 @@ form button:hover {
           <li><a class="get-a-quote" href="connect.php">Se Connecter</a></li>
         </ul>
       </nav><!-- .navbar -->
-
     </div>
-  </header><!-- End Header -->
-  <!-- End Header -->
+  </header>
 
-  
-    <!-- ======= Call To Action Section ======= -->
-    <section id="call-to-action" class="call-to-action">
-      <div class="container" data-aos="zoom-out">
-
-        
-
-      </div>    
-    </section><!-- End Call To Action Section -->
-
-    <br><br><br>
-    <div class="row justify-content-center">
-          <div class="col-lg-8 text-center">
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+      <div class="row gy-4 d-flex justify-content-between">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
             <h3> Espace Client </h3>
             <p>  Connectez-vous à votre espace pour bénéficier de nos offres</p>
 
@@ -187,64 +167,21 @@ form button:hover {
           </div>
         </div>
 
-        <br>     <br><br><br>
-        <br><br><br>
-
-  <footer id="footer" class="footer">
-
-    <div class="container">
-      <div class="row gy-4">
-        <div class="col-lg-5 col-md-12 footer-info">
-          <a href="index.php" class="logo d-flex align-items-center">
-            <span>TuniLiv</span>
-          </a>
-          <p>We are the best</p>
-          <div class="social-links d-flex mt-4">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="index.php">Accueil</a></li>
-            <li><a href="connect.php">Se Conneter</a></li>
-            <li><a href="register.php">S'inscrire</a></li>
-
-          </ul>
-        </div>
+        <br><br><br><br>
+        <br><br><br><br>
+        <br>
 
         
+  
 
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-          <h4>Contact Us</h4>
-          <p>
-            ISET RADES <br> 
-            2098 RADES<br>
-            Ben Arous - Tunisia <br><br>
-            <strong>Téléphone:</strong> +216 21 345 678 <br>
-            <strong>Email:</strong> info@tuniliv.tn<br>
-          </p>
 
-        </div>
-
-      </div>
-    </div>
-
-    <div class="container mt-4">
       <div class="copyright">
         2023 &copy; Copyright <strong><a href="index.php"><span>TUNILIV</span></a></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Designed by       Designed by Yassine MANAI & Sofiene ZAYATI</>
-
+      Designed by Yassine MANAI & Sofiene ZAYATI</>
       </div>
-    </div>
 
-  </footer><!-- End Footer -->
   <!-- End Footer -->
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

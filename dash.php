@@ -1,18 +1,14 @@
 <?php
 session_start();
 
-// Check if the user is logged in
 if (!isset($_SESSION['id'])) 
 {
-    // If not logged in, redirect to the login page
     header("Location: connect.php");
     exit();
 }
 
-// Include your database connection file
 include("./includes/db.php");
 
-// Fetch user data from the users table
 $id = $_SESSION['id'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $id);
@@ -20,15 +16,15 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0)
- {
+{
     $user = $result->fetch_assoc();
-} else {
-    // If user data not found, redirect to login
+} 
+else 
+{
     header("Location: connect.php");
     exit();
 }
 
-// Fetch user-specific delivery data from the dashboard table
 $stmt = $conn->prepare("SELECT * FROM dashboard WHERE user_id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -40,15 +36,13 @@ if ($dashboardResult->num_rows > 0)
 } 
 else 
 {
-    $dashboardData = array(); // Default if no dashboard data found
+    $dashboardData = array(); 
 }
 
-// Handle adding, deleting, or modifying delivery
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
     if (isset($_POST["add_delivery"])) 
     {
-        // Add delivery information
         $delivery_id = $_POST["delivery_id"];
         $delivery_name = $_POST["delivery_name"];
         $delivery_address = $_POST["delivery_address"];
@@ -61,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     } 
     elseif (isset($_POST["delete_delivery"]))
     {
-        // Delete delivery information
         $delete_delivery_id = $_POST["delete_delivery_id"];
 
         $stmt = $conn->prepare("DELETE FROM dashboard WHERE user_id = ? AND delivery_id = ?");
@@ -70,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     } 
     elseif (isset($_POST["modify_delivery"])) 
     {
-        // Modify delivery information
         $modify_delivery_id = $_POST["modify_delivery_id"];
         $new_delivery_address = $_POST["new_delivery_address"];
         $new_delivery_name = $_POST["new_delivery_name"];
@@ -82,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 }
 
-// Fetch updated dashboard data after modification
 $stmt = $conn->prepare("SELECT * FROM dashboard WHERE user_id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -94,15 +85,13 @@ if ($dashboardResult->num_rows > 0)
 } 
 else 
 {
-    $dashboardData = array(); // Default if no dashboard data found
+    $dashboardData = array(); 
 }
 
-// Close the prepared statements
 $stmt->close();
 
-// Log out and destroy the session when the Disconnect button is clicked
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["disconnect"]))
- {
+{
     session_destroy();
     header("Location: connect.php");
     exit();
@@ -114,7 +103,6 @@ $stmt->bind_param("i", $id);
 $stmt->execute();
 $allDeliveriesResult = $stmt->get_result();
 
-// Fetch all delivery data into an array
 $allDeliveries = $allDeliveriesResult->fetch_all(MYSQLI_ASSOC);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"])) 
@@ -130,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
     $updateStmt->execute();
 
     if ($updateStmt->affected_rows > 0)
-     {
+    {
         echo "Profil modifié avec succès.";
     } 
     else 
@@ -168,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            text-align: left; /* Align text content to the left */
+            text-align: left; 
         }
 
         h2 {
@@ -220,11 +208,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
             margin: 0 10px;
         }
 
-       /* Style for the table displaying all delivery data */
+
         #allDeliveries {
             border-collapse: collapse;
-            width: 40%; /* Set a specific width for the table */
-            margin:  50px auto;; /* Center the table horizontally with top and bottom margin */
+            width: 40%; 
+            margin:  50px auto;; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: auto;
             text-align: center;
@@ -246,25 +234,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
 
         }
 
-        #allDeliveries tr:nth-child(even) {
+        #allDeliveries tr:nth-child(even) 
+        {
             background-color: #f9f9f9;
         }
 
-        #allDeliveries tr:hover {
+        #allDeliveries tr:hover 
+        {
             background-color: #f1f1f1;
         }
     </style>
 
 
     <script>
-        // JavaScript function to toggle the visibility of forms
         function toggleForm(formId) 
         {
             var form = document.getElementById(formId);
             form.classList.toggle('hidden');
         }
 
-        // JavaScript function to toggle the visibility of all delivery data
         function showAllDeliveries() 
         {
             var allDeliveriesDiv = document.getElementById('allDeliveries');
@@ -276,12 +264,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
 
 <body>
     <br>
-    <!-- Add your header content here -->
     <nav>
         <button onclick="toggleForm('addForm')">Ajouter Livraison</button>
         <button onclick="toggleForm('deleteForm')">Supprimer Livraison</button>
         <button onclick="toggleForm('modifyForm')"> Modifer Livraison </button>
         <button onclick="showAllDeliveries()"> Afficher tous les livraison</button>
+        <button onclick="toggleForm('users')">Afficher tous les utilisateurs</button>
         <button onclick="toggleForm('profileForm')">Modifier le profil</button>
     <br><br>
         <form method="POST" action="">
@@ -294,10 +282,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
         <h2>Bienvenu dans votre Dashboard, <?php echo $user['nom']; ?>!</h2>
         <p>Votre ID: <?php echo $user['id']; ?></p>
 
-        <!-- Add more dashboard content as needed -->
 
 
-        <!-- Form to add a new delivery -->
         <form method="POST" action="" id="addForm" class="hidden">
             <label for="delivery_id"> ID de Livraison:</label>
             <input type="text" name="delivery_id" required>
@@ -310,14 +296,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
             <button type="submit" name="add_delivery"> Ajouter Livraison</button>
         </form>
 
-        <!-- Form to delete a delivery -->
         <form method="POST" action="" id="deleteForm" class="hidden">
             <label for="delete_delivery_id">ID de livraison a supprimer:</label>
             <input type="text" name="delete_delivery_id" required>
             <button type="submit" name="delete_delivery">Supprimer Livraison</button>
         </form>
 
-        <!-- Form to modify a delivery -->
         <form method="POST" action="" id="modifyForm" class="hidden">
             <label for="modify_delivery_id">ID de Livraison a modifier:</label>
             <input type="text" name="modify_delivery_id" required>
@@ -361,7 +345,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
         </thead>
         <tbody>
             <?php
-            // Display all delivery data
             foreach ($allDeliveries as $delivery)
              {
                 echo "<tr>";
@@ -378,11 +361,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
 </div>
 
     </div>
-
-
-   
-
-
 </body>
 
 </html>
