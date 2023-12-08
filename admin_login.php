@@ -82,7 +82,7 @@ $stmt->close();
             margin: 50px auto;
             padding: 20px;
             background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 4, 0, 5.1);
             border-radius: 8px;
             text-align: left;
         }
@@ -109,7 +109,7 @@ $stmt->close();
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #0000FF;
             color: #fff;
             padding: 10px 15px;
             border: none;
@@ -119,7 +119,7 @@ $stmt->close();
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #89CFEF;
         }
 
         table {
@@ -139,7 +139,7 @@ $stmt->close();
         }
 
         table th {
-            background-color: #4CAF50;
+            background-color: #0000FF;
             color: white;
             text-align: center;
         }
@@ -153,7 +153,7 @@ $stmt->close();
         }
 
         nav {
-            background-color: #333;
+            background-color: #0000;
             padding: 10px;
             text-align: center;
         }
@@ -171,6 +171,7 @@ $stmt->close();
 
 <body>
     <nav>
+        <br><br>
         <button onclick="showAllContacts()">Afficher tous les contacts</button>
         <button onclick="showAllDeliveries()">Afficher toutes les livraisons</button>
         <button onclick="toggleForm('modifyStatusForm')">Modifier le statut de livraison</button>
@@ -178,9 +179,7 @@ $stmt->close();
         <button onclick="toggleForm('userlist')">Liste des Utilisateurs </button>
         <button onclick="toggleForm('deleteUserForm')">Supprimer un utilisateur</button>
         <br><br>
-        <form method="POST" action="">
-            <button type="submit" name="disconnect">Déconnecter</button>
-        </form>
+        
     </nav>
 
     <div class="container">
@@ -193,7 +192,7 @@ $stmt->close();
             <select name="new_status" required>
                 <option value="ok">OK</option>
                 <option value="En Cours">En Cours</option>
-                <option value="no">Non</option>
+                <option value="Annulé">Annulé</option>
             </select><br><br><br>
             <button type="submit" name="modify_status">Modifier</button>
         </form>
@@ -232,11 +231,11 @@ $stmt->close();
                 foreach ($contact_messages as $contact) 
                 {
                     echo "<tr>";
-                    echo "<td>{$contact['id']}</td>";
-                    echo "<td>{$contact['name']}</td>";
-                    echo "<td>{$contact['email']}</td>";
-                    echo "<td>{$contact['subject']}</td>";
-                    echo "<td>{$contact['message']}</td>";
+                        echo "<td>{$contact['id']}</td>";
+                        echo "<td>{$contact['name']}</td>";
+                        echo "<td>{$contact['email']}</td>";
+                        echo "<td>{$contact['subject']}</td>";
+                        echo "<td>{$contact['message']}</td>";
                     echo "</tr>";
                 }
                 ?>
@@ -258,11 +257,11 @@ $stmt->close();
                 foreach ($allDeliveries as $delivery) 
                 {
                     echo "<tr>";
-                    echo "<td>{$delivery['delivery_id']}</td>";
-                    echo "<td>{$delivery['delivery_name']}</td>";
-                    echo "<td>{$delivery['delivery_address']}</td>";
-                    echo "<td>{$delivery['delivery_cin']}</td>";
-                    echo "<td>{$delivery['delivery_stat']}</td>";
+                        echo "<td>{$delivery['delivery_id']}</td>";
+                        echo "<td>{$delivery['delivery_name']}</td>";
+                        echo "<td>{$delivery['delivery_address']}</td>";
+                        echo "<td>{$delivery['delivery_cin']}</td>";
+                        echo "<td>{$delivery['delivery_stat']}</td>";
                     echo "</tr>";
                 }
                 ?>
@@ -284,11 +283,11 @@ $stmt->close();
                 foreach ($userlist as $uls) 
                 {
                     echo "<tr>";
-                    echo "<td>{$uls['id']}</td>";
-                    echo "<td>{$uls['nom']}</td>";
-                    echo "<td>{$uls['email']}</td>";
-                    echo "<td>{$uls['cin']}</td>";
-                    echo "<td>{$uls['adresse']}</td>";
+                        echo "<td>{$uls['id']}</td>";
+                        echo "<td>{$uls['nom']}</td>";
+                        echo "<td>{$uls['cin']}</td>";
+                        echo "<td>{$uls['email']}</td>";
+                        echo "<td>{$uls['adresse']}</td>";
                     echo "</tr>";
                 }
                 ?>
@@ -322,6 +321,10 @@ $stmt->close();
             allusers.style.display = (allusers.style.display === 'none') ? 'table' : 'none';
         }
     </script>
+
+<form method="POST" action="">
+            <button type="submit" name="disconnect">Déconnecter</button>
+        </form>
 </body>
 
 </html>

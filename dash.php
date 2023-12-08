@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #0000FF;
             color: #fff;
             padding: 10px 15px;
             border: none;
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #89CFEF;
         }
 
         .hidden {
@@ -199,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
         }
 
         nav {
-            background-color: #333;
+            background-color: #0000;
             padding: 10px;
             text-align: center;
         }
@@ -228,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
         }
 
         #allDeliveries th {
-            background-color: #4CAF50;
+            background-color: #0000FF;
             color: white;
             text-align: center;
 
@@ -236,12 +236,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
 
         #allDeliveries tr:nth-child(even) 
         {
-            background-color: #f9f9f9;
+            background-color: #0000FF;
         }
 
         #allDeliveries tr:hover 
         {
-            background-color: #f1f1f1;
+            background-color: #0000FF;
         }
     </style>
 
@@ -269,12 +269,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
         <button onclick="toggleForm('deleteForm')">Supprimer Livraison</button>
         <button onclick="toggleForm('modifyForm')"> Modifer Livraison </button>
         <button onclick="showAllDeliveries()"> Afficher tous les livraison</button>
-        <button onclick="toggleForm('users')">Afficher tous les utilisateurs</button>
         <button onclick="toggleForm('profileForm')">Modifier le profil</button>
     <br><br>
-        <form method="POST" action="">
-            <button type="submit" name="disconnect"> Déconnecter </button>
-        </form>
+       
 
     </nav>
 
@@ -306,12 +303,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
             <label for="modify_delivery_id">ID de Livraison a modifier:</label>
             <input type="text" name="modify_delivery_id" required>
             <label for="new_delivery_name">Nv Nom:</label>
-            <input type="text" name="new_delivery_name" required>
+            <input type="text" name="new_delivery_name" srequired>
             <label for="new_delivery_address">Nv Address:</label>
             <input type="text" name="new_delivery_address" required>
             <label for="new_delivery_cin">Nv CIN:</label>
             <input type="text" name="new_delivery_cin" required>
-            <button type="submit" name="modify_delivery">Modify Livraison</button>
+            <button type="submit" name="modify_delivery">Modifier Livraison</button>
         </form>
 
         <form method="POST" action="" id="profileForm" class="hidden">
@@ -348,11 +345,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
             foreach ($allDeliveries as $delivery)
              {
                 echo "<tr>";
-                echo "<td>{$delivery['delivery_id']}</td>";
-                echo "<td>{$delivery['delivery_name']}</td>";
-                echo "<td>{$delivery['delivery_address']}</td>";
-                echo "<td>{$delivery['delivery_cin']}</td>";
-                echo "<td>{$delivery['delivery_stat']}</td>";
+                    echo "<td>{$delivery['delivery_id']}</td>";
+                    echo "<td>{$delivery['delivery_name']}</td>";
+                    echo "<td>{$delivery['delivery_address']}</td>";
+                    echo "<td>{$delivery['delivery_cin']}</td>";
+                    echo "<td>{$delivery['delivery_stat']}</td>";
                 echo "</tr>";
             }
             ?>
@@ -361,6 +358,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modify_profile"]))
 </div>
 
     </div>
+
+    <form method="POST" action="">
+            <button type="submit" name="disconnect"> Déconnecter </button>
+        </form>
 </body>
 
 </html>
