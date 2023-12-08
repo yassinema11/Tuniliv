@@ -89,16 +89,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     </div>
   </header>
 
-
   <main id="main">
-
     <div class="breadcrumbs">
       <div class="page-header d-flex align-items-center" style="background-image: url('assets/img/page-header.jpg');">
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
               <h2>Contactez-Nous</h2>
-              <p>feel free</p>
             </div>
           </div>
         </div>
@@ -111,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
           </ol>
         </div>
       </nav>
-    </div><!-- End Breadcrumbs -->
+    </div>
 
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
@@ -181,8 +178,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     </section>
 
   </main>
-
-
 
   <footer id="footer" class="footer">
 
@@ -256,6 +251,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>
 
